@@ -47,8 +47,8 @@ class Delivery extends Model
     /**
      * Get the packages associated with the delivery.
      */
-    public function packages()
+    public function package()
     {
-        return $this->hasMany(Package::class);
+        return $this->hasOne(Package::class);
     }
 }

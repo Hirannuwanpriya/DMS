@@ -37,6 +37,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('deliveries/{delivery}', [\App\Http\Controllers\DeliveryController::class, 'destroy'])
         ->name('deliveries.destroy');
 
+    //package details
+    Route::get('deliveries/{delivery}/packages', [\App\Http\Controllers\PackageController::class, 'index'])
+        ->name('deliveries.package.index');
+
 
 });
 
