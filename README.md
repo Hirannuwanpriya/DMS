@@ -31,12 +31,6 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Set your database credentials in `.env`, then run the migrations:
-
-```bash
-php artisan migrate
-```
-
 ## Seed Sample Data
 
 After installing dependencies, run the following command to populate the database with sample data:
