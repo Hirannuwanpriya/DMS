@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin',
         ]);
 
-        Delivery::factory(100)->create();
+        Delivery::factory(25)->create();
 
         Delivery::all()->each(function ($delivery) {
             Package::factory(3)->create([
