@@ -39,7 +39,7 @@ After installing dependencies, run the following command to populate the databas
 composer refresh
 ```
 
-> This command will reset the database and seed it with sample users, documents, and categories.
+> This command will reset the database and seed it with sample users, deliveries, and packages.
 
 ### 🔐 Sample Admin Login
 
