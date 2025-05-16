@@ -25,6 +25,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 
+    //create new delivery
+    Route::get('deliveries/create', [\App\Http\Controllers\DeliveryController::class, 'create'])
+        ->name('deliveries.create');
+
+    //update delivery
+    Route::get('deliveries/{delivery}/edit', [\App\Http\Controllers\DeliveryController::class, 'edit'])
+        ->name('deliveries.edit');
+
+    //delete delivery
+    Route::delete('deliveries/{delivery}', [\App\Http\Controllers\DeliveryController::class, 'destroy'])
+        ->name('deliveries.destroy');
+
 
 });
 

@@ -10,7 +10,8 @@ class DeliveryController extends Controller
     // Display a listing of the deliveries
     public function index()
     {
-        $deliveries = Delivery::all();
+        //get all delivery records and paginate with 10
+         $deliveries = Delivery::with('packages')->paginate(10);
 
         return view('dashboard', compact('deliveries'));
     }
