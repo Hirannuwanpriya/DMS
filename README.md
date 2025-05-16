@@ -1,6 +1,6 @@
-# DMS - Document Management System
+# DMS - Delivery Management System
 
-A Laravel-based Document Management System (DMS) to manage and organize documents efficiently.
+A Laravel-based Delivery Management System (DMS) to manage and organize delivery efficiently.
 
 ## Requirements
 
