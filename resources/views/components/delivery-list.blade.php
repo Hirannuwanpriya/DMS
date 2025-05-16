@@ -64,19 +64,19 @@
                                 @endif
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{ $delivery->type_of_good }}
+                                {{ \App\Enum\TypeOfGood::getTypeOfGood($delivery->type_of_good) }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{ $delivery->provider }}
+                                {{ \App\Enum\Provider::getProviderList()[$delivery->provider] ?? 'Unknown' }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{ $delivery->priority }}
+                                {{ \App\Enum\Priority::getPriorityList()[$delivery->priority] ?? 'Unknown' }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{ $delivery->shipment_ready_time }}
+                                {{ \Carbon\Carbon::parse($delivery->shipment_ready_time)->format('Y-m-d H:i') }}
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {{ $delivery->pickup_time }}
+                                {{ \Carbon\Carbon::parse($delivery->pickup_time)->format('Y-m-d H:i') }}
                             </td>
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                 <a href="{{ route('deliveries.edit', $delivery) }}"
