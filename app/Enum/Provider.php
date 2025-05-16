@@ -18,4 +18,16 @@ enum Provider: int
             self::TGE => 'TGE',
         ];
     }
+
+    //get all
+    public static function all(): array
+    {
+        return [
+            self::DHL => 'DHL',
+            self::STARTRACK => 'StarTrack',
+            self::ZOOM2U => 'Zoom2U',
+            self::TGE => 'TGE',
+        ];
+    }
+
 }

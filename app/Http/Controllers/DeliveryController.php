@@ -19,7 +19,13 @@ class DeliveryController extends Controller
     // Show the form for creating a new delivery
     public function create()
     {
-        return view('deliveries.create');
+
+        $providers = \App\Enum\Provider::all();
+        $priorities = \App\Enum\Priority::all();
+        $typeofgoods = \App\Enum\TypeOfGood::all();
+
+        return view('deliveries.create',
+        compact('providers', 'priorities', 'typeofgoods'));
     }
 
     // Store a newly created delivery in storage
@@ -27,23 +33,39 @@ class DeliveryController extends Controller
     {
         $data = $request->validate([
             'pickup_address' => 'required|string|max:255',
+            'pickup_name' => 'required|string|max:255',
+            'pickup_contact_no' => 'required|string|max:15',
+            'pickup_email' => 'required|email|max:255',
             'delivery_address' => 'required|string|max:255',
-            'type_of_good' => 'required|integer', // Assuming this is an enum-backed column
+            'delivery_name' => 'required|string|max:255',
+            'delivery_contact_no' => 'required|string|max:15',
+            'delivery_email' => 'required|email|max:255',
+            'type_of_good' => 'required|integer',
+            'provider' => 'required|integer',
             'priority' => 'required|integer',
-            'packages' => 'required|array', // Validate packages as an array
-            'packages.*.weight' => 'required|numeric|min:0.1', // Validate each package's weight
-            'packages.*.dimensions' => 'required|string|max:255', // Validate each package's dimensions
+            'pickup_time' => 'required|date',
+            'shipment_ready_time' => 'required|date',
+            'package_description' => 'required|string|max:500',
+            'length' => 'required|numeric|min:0',
+            'height' => 'required|numeric|min:0',
+            'width' => 'required|numeric|min:0',
+            'weight' => 'required|numeric|min:0',
         ]);
 
-        // Create the delivery
         $delivery = Delivery::create($data);
 
-        // Save the packages
-        foreach ($data['packages'] as $packageData) {
-            $delivery->packages()->create($packageData);
-        }
+        //save the package details
+        $delivery->package()->create([
+            'delivery_id' => $delivery->id,
+            'description' => $data['package_description'],
+            'length' => $data['length'],
+            'height' => $data['height'],
+            'width' => $data['width'],
+            'weight' => $data['weight'],
+        ]);
 
-        return redirect()->route('deliveries.index')->with('success', 'Delivery and packages created successfully!');
+        session()->flash('success', 'Delivery created successfully!');
+        return redirect()->route('dashboard')->with('success', 'Delivery created successfully!');
     }
 
     // Display the specified delivery
@@ -71,7 +93,7 @@ class DeliveryController extends Controller
 
         $delivery->update($data);
 
-        return redirect()->route('deliveries.index')->with('success', 'Delivery updated successfully!');
+        return redirect()->route('dashboard')->with('success', 'Delivery updated successfully!');
     }
 
     // Remove the specified delivery from storage
@@ -79,6 +101,6 @@ class DeliveryController extends Controller
     {
         $delivery->delete();
 
-        return redirect()->route('deliveries.index')->with('success', 'Delivery deleted successfully!');
+        return redirect()->route('dashboard')->with('success', 'Delivery deleted successfully!');
     }
 }

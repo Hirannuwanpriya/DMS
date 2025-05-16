@@ -17,4 +17,14 @@ enum Priority: int
             self::Immediate => 'Immediate',
         ];
     }
+
+    //get all
+    public static function all(): array
+    {
+        return [
+            self::Standard => 'Standard',
+            self::Express => 'Express',
+            self::Immediate => 'Immediate',
+        ];
+    }
 }

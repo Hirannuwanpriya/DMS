@@ -29,6 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('deliveries/create', [\App\Http\Controllers\DeliveryController::class, 'create'])
         ->name('deliveries.create');
 
+    //store new delivery
+    Route::post('deliveries', [\App\Http\Controllers\DeliveryController::class, 'store'])
+        ->name('deliveries.store');
+
+
     //update delivery
     Route::get('deliveries/{delivery}/edit', [\App\Http\Controllers\DeliveryController::class, 'edit'])
         ->name('deliveries.edit');

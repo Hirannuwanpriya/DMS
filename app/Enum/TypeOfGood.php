@@ -18,4 +18,13 @@ enum TypeOfGood: int
         };
     }
 
+    //get all types of goods
+    public static function all(): array
+    {
+        return [
+            self::Document => 'Document',
+            self::Parcel => 'Parcel',
+        ];
+    }
+
 }

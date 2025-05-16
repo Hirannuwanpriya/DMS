@@ -16,4 +16,14 @@ enum Status: int
             self::Deleted => 'Deleted',
         ];
     }
+
+    //get all
+    public static function all(): array
+    {
+        return [
+            self::Active => 'Active',
+            self::Archived => 'Archived',
+            self::Deleted => 'Deleted',
+        ];
+    }
 }
