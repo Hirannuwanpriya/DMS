@@ -77,7 +77,11 @@ class DeliveryController extends Controller
     // Show the form for editing the specified delivery
     public function edit(Delivery $delivery)
     {
-        return view('deliveries.edit', compact('delivery'));
+        $providers = \App\Enum\Provider::all();
+        $priorities = \App\Enum\Priority::all();
+        $typeofgoods = \App\Enum\TypeOfGood::all();
+
+        return view('deliveries.edit', compact('delivery', 'providers', 'priorities', 'typeofgoods'));
     }
 
     // Update the specified delivery in storage
@@ -85,13 +89,36 @@ class DeliveryController extends Controller
     {
         $data = $request->validate([
             'pickup_address' => 'required|string|max:255',
+            'pickup_name' => 'required|string|max:255',
+            'pickup_contact_no' => 'required|string|max:15',
+            'pickup_email' => 'required|email|max:255',
             'delivery_address' => 'required|string|max:255',
+            'delivery_name' => 'required|string|max:255',
+            'delivery_contact_no' => 'required|string|max:15',
+            'delivery_email' => 'required|email|max:255',
             'type_of_good' => 'required|integer',
+            'provider' => 'required|integer',
             'priority' => 'required|integer',
-            // Add other validation rules as needed
+            'pickup_time' => 'required|date',
+            'shipment_ready_time' => 'required|date',
+            'package_description' => 'required|string|max:500',
+            'length' => 'required|numeric|min:0',
+            'height' => 'required|numeric|min:0',
+            'width' => 'required|numeric|min:0',
+            'weight' => 'required|numeric|min:0',
         ]);
 
+        // Update delivery details
         $delivery->update($data);
+
+        // Update package details
+        $delivery->package()->update([
+            'description' => $data['package_description'],
+            'length' => $data['length'],
+            'height' => $data['height'],
+            'width' => $data['width'],
+            'weight' => $data['weight'],
+        ]);
 
         return redirect()->route('dashboard')->with('success', 'Delivery updated successfully!');
     }
