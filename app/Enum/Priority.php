@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Enum;
 
-final class Priority extends Enum
+enum Priority: int
 {
     const Standard   = 1;
     const Express = 2;

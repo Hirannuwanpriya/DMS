@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-final class Provider extends Enum
+enum Provider: int
 {
     const DHL   = 1;
     const STARTRACK = 2;

@@ -38,9 +38,9 @@ class Delivery extends Model
         'pickup_time' => 'datetime',
         'shipment_ready_time' => 'datetime',
         'price' => 'decimal:2',
-        'type_of_good' => TypeOfGood::class,
-        'provider' => Provider::class,
-        'priority' => Priority::class,
+//        'type_of_good' => TypeOfGood::class,
+//        'provider' => Provider::class,
+//        'priority' => Priority::class,
     ];
 
 

@@ -1,19 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Enum;
 
-final class TypeOfGood extends Enum
+enum TypeOfGood: int
 {
-    const Document   = 1;
-    const Parcel = 2;
-
-    public static function getTypeOfGoodList()
-    {
-        return [
-            self::Document => 'Document',
-            self::Parcel => 'Parcel',
-        ];
-    }
-
+    const Document   = 0;
+    const Parcel = 1;
 
 }

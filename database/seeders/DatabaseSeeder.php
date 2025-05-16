@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Delivery;
+use App\Models\Package;
 use App\Models\User;
 
 use Illuminate\Database\Seeder;

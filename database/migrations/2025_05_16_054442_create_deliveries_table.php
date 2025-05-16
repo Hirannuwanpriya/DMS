@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('delivery_name')->nullable();
             $table->string('delivery_contact_no')->nullable();
             $table->string('delivery_email')->nullable();
-            $table->integer('type_of_good')->default(1); // Default to Document
+            $table->integer('type_of_good')->default(0); // Default to Document
             $table->integer('provider')->nullable(); // Add default if needed
             $table->integer('priority')->default(1); // Default to Standard
             $table->timestamp('pickup_time')->nullable(); // Use timestamp

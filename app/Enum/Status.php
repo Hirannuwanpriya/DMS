@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-final class Status extends Enum
+enum Status: int
 {
     const Active   = 1;
     const Archived = 2;
