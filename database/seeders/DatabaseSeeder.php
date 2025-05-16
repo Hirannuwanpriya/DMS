@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,5 +26,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@dms.com',
             'password' => 'admin',
         ]);
+
+        Delivery::factory(10)->create();
+
+        Package::factory(10)->create();
+
+
+
+
     }
 }
